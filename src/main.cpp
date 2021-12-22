@@ -1,4 +1,13 @@
+/*              PROGRAM ANTRIAN ATM MENGGUNAKAN LINKED LIST
+
+                NAMA : KADEK WIRA ADHI KUSUMA PRATAMA
+                NIM:210040131
+                GITHUB: kadekwira
+
+                */
+
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
 
@@ -64,7 +73,7 @@ bool isEmptyLinkedList()
 void enqueueLinkedList(string nama)
 {
     if (isFullLinkedList())
-        cout << "Antrian Penuh !!"<<endl;
+        cout << "Antrian Penuh !!" << endl;
 
     else
     {
@@ -72,7 +81,7 @@ void enqueueLinkedList(string nama)
         {
             head = new antrianLinkedList();
             head->nama = nama;
-           
+
             head->next = NULL;
             tail = head;
         }
@@ -86,39 +95,43 @@ void enqueueLinkedList(string nama)
         }
     }
 }
-//dequeue linked List
+// dequeue linked List
 void dequeueLinkedList()
 {
     if (isEmptyLinkedList())
     {
 
-        cout << "Data Antrian Kosong !"<< endl;
-    }else{
-        del=head;
-        head= head->next;
-        del->next= NULL;
+        cout << "Data Antrian Kosong !" << endl;
+    }
+    else
+    {
+        del = head;
+        head = head->next;
+        del->next = NULL;
         delete del;
     }
 }
 
-//clear linked List
+// clear linked List
 void clearLinkedList()
 {
     if (isEmptyLinkedList())
     {
 
-        cout << "Data Antrian Kosong !"<< endl;
-    }else{
-        cur=head;
-        while(cur != NULL)
+        cout << "Data Antrian Kosong !" << endl;
+    }
+    else
+    {
+        cur = head;
+        while (cur != NULL)
         {
-            del=cur;
-            cur=cur->next;
-            del->next= NULL;
+            del = cur;
+            cur = cur->next;
+            del->next = NULL;
             delete del;
         }
-        head=NULL;
-        tail=NULL;
+        head = NULL;
+        tail = NULL;
     }
 }
 
@@ -129,50 +142,91 @@ void printLinkedList()
     if (isEmptyLinkedList())
     {
 
-        cout << "Data Antrian Kosong !"<< endl;
+        cout << "Data Antrian Kosong !" << endl;
     }
     else
     {
-        cout<<" Jumlah Antrian : "<<countLinkedList()<<endl;
+        cout << " Jumlah Antrian : " << countLinkedList() << endl;
         cur = head;
-        int no=1;
-        while ( no <= maksAntrianLinkedList)
+        int no = 1;
+        while (no <= maksAntrianLinkedList)
         {
-            if(cur != NULL){
-                cout<<no<<" . "<<cur->nama<<endl; 
-                cur =cur->next;
+            if (cur != NULL)
+            {
+                cout << no << " . " << cur->nama << endl;
+                cur = cur->next;
             }
-            else{
-                cout<<no<<" . "<<"[kosong]"<<endl;
-    
+            else
+            {
+                cout << no << " . "
+                     << "[kosong]" << endl;
             }
             no++;
         }
     }
-    cout<<endl;
+    cout << endl;
 }
 
-
-
 int main()
-{       antrianLinkedList;
-        int pilihan;
-        char ulang;
+{
+    string nama;
+    int pilihan;
+    do
+    {
 
-        do{
-            cout<<"1. Enqueue Linked List "<<endl;
-            cout<<"2.Dequeue Linked List "<<endl;
-            cout<<"3.Print Linked List "<<endl;
-            cout<<"4.Clear Linked List"<<endl;
+        system("cls");
+        cout << "======================================" << endl;
+        cout << "        PROGRAM QUEUE LINKED LIST     " << endl;
+        cout << "======================================" << endl;
+        cout << "1.Enqueue" << endl;
+        cout << "2.Dequeue" << endl;
+        cout << "3.print" << endl;
+        cout << "4.Clear" << endl;
+        cout << "5.Keluar" << endl;
+        cout << "================" << endl;
+        cout << "pilihan menu : ";
+        cin >> pilihan;
+
+        switch (pilihan)
+        {
+        case 1:
+        {
+            cout << " Masukan Nama : ";
+            cin >> nama;
+            enqueueLinkedList(nama);
+            break;
         }
-        
+        case 2:
+        {
+            dequeueLinkedList();
+            break;
+        }
+        case 3:
+        {
 
-
-        cout<<"apakah anda inggin mengulang ? [y/t]: ";
-        cin>>ulang;
-        while(ulang != 't');
-        cout<<"makasi"<<endl;
-
+            printLinkedList();
+            break;
+        }
+        case 4:
+        {
+            clearLinkedList();
+            break;
+        }
+        case 5:
+        {
+            cout << endl
+                 << " Terima kasih telah menggunakan sistem ini ";
+            cout << endl
+                 << "Tekan Enter untuk keluar";
+            break;
+        }
+        default:
+        {
+            cout << "tidak ada dalam pilihan !!" << endl;
+        }
+        }
+        getch();
+    } while (pilihan != 5);
     cin.get();
     return 0;
 }
